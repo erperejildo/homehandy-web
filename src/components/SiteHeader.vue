@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { APP_NAME } from '@/config'
+import iconUrl from '@/assets/icon.png'
 
 const links = [
   { label: 'Home', to: '/' },
@@ -14,7 +15,7 @@ const links = [
   <header class="site-header">
     <div class="container site-header__inner">
       <RouterLink class="site-header__brand" to="/">
-        <span class="site-header__logo" aria-hidden="true">▣</span>
+        <img class="site-header__logo" :src="iconUrl" alt="" width="36" height="36" />
         <span class="site-header__name">{{ APP_NAME }}</span>
       </RouterLink>
 
@@ -66,9 +67,7 @@ const links = [
   width: 36px;
   height: 36px;
   border-radius: var(--radius-button-form);
-  background: var(--gradient-primary);
-  color: var(--color-on-primary);
-  font-size: var(--font-size-body);
+  object-fit: cover;
 }
 
 .site-header__nav {
