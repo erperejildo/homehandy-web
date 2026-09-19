@@ -3,7 +3,7 @@
 Marketing website for **HomeHandy**, the home maintenance tracker app
 (repo: `/Users/dani/Desktop/repos/home-handy` — read its AGENTS.md for full app context).
 
-- **Live URL**: https://erperejildo.github.io/homehandy-web/ (GitHub Pages, subpath `/homehandy-web/`)
+- **Live URL**: https://homehandy.store/ (custom domain via GitHub Pages, served from root)
 - **Repo**: `git@github.com:erperejildo/homehandy-web.git`
 - **Stack**: Vue 3 + vue-router + Vite + TypeScript + Sass (scss) + Vitest
 - **Style source of truth**: mirrors the app theme in
@@ -20,7 +20,7 @@ Defined once in `src/config.ts` (`STORE_URLS`). Never hardcode them anywhere els
 
 ```
 src/
-  config.ts                  # APP_NAME, tagline, description, STORE_URLS, BASE_PATH, detectPlatform()
+  config.ts                  # APP_NAME, tagline, description, SITE_URL, STORE_URLS, detectPlatform()
   main.ts                    # mounts app, imports theme.scss globally
   App.vue                    # SiteHeader + RouterView + SiteFooter
   router/index.ts            # routes + per-route SEO meta (title/description via afterEach)
@@ -113,8 +113,10 @@ curl smoke test on live URLs.
 
 ## Gotchas
 
-- GitHub Pages serves from the subpath `/homehandy-web/`. `vite.config.ts` `base` and
-  `src/config.ts` `BASE_PATH` must stay in sync. If the repo is renamed, update both +
+- The canonical site is https://homehandy.store (custom domain, served from root):
+  `vite.config.ts` `base` is `'/'`. `src/router/index.ts` still detects the legacy
+  `/homehandy-web/` subpath at runtime so the old GitHub Pages URL keeps working.
+  If the domain or repo changes, update `src/config.ts` `SITE_URL` +
   `public/sitemap.xml` + `public/robots.txt` + `manifest.webmanifest` `start_url` + CI smoke test.
 - Never reference assets with root-absolute URLs (`/assets/...`) in code; rely on Vite base.
 - No OG/social image yet — add one to `public/` and reference it from `index.html` og:image.

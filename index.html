@@ -4,34 +4,123 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#7CB342" />
-    <title>HomeHandy — Home maintenance made easy</title>
+    <link rel="canonical" href="https://homehandy.store/" />
+    <title>HomeHandy: Home Maintenance Tracker &amp; Upkeep Log</title>
     <meta
       name="description"
-      content="HomeHandy is the friendly home maintenance tracker. Get reminders for what is due, log jobs in seconds, and keep a reliable service history — HVAC, plumbing, safety, kitchen and more."
+      content="Free home maintenance tracker. Get recurring upkeep reminders, log repairs in seconds, and track a durable service history for your property."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="HomeHandy" />
-    <meta property="og:title" content="HomeHandy — Home maintenance made easy" />
+    <meta property="og:url" content="https://homehandy.store/" />
+    <meta property="og:title" content="HomeHandy: Home Maintenance Tracker &amp; Upkeep Log" />
     <meta
       property="og:description"
-      content="Get reminders for what is due, log jobs in seconds, and keep a reliable service history."
+      content="Free home maintenance tracker. Get recurring upkeep reminders, log repairs in seconds, and track a durable service history for your property."
     />
     <meta
       property="og:image"
-      content="https://erperejildo.github.io/homehandy-web/icon-512.png"
+      content="https://homehandy.store/icon-512.png"
     />
     <meta name="twitter:card" content="summary" />
     <meta
       name="twitter:image"
-      content="https://erperejildo.github.io/homehandy-web/icon-512.png"
+      content="https://homehandy.store/icon-512.png"
     />
-    <meta name="twitter:title" content="HomeHandy — Home maintenance made easy" />
+    <meta name="twitter:title" content="HomeHandy: Home Maintenance Tracker &amp; Upkeep Log" />
     <meta
       name="twitter:description"
-      content="Get reminders for what is due, log jobs in seconds, and keep a reliable service history."
+      content="Free home maintenance tracker. Get recurring upkeep reminders, log repairs in seconds, and track a durable service history for your property."
     />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://homehandy.store/#app",
+          "name": "HomeHandy",
+          "operatingSystem": "iOS, Android",
+          "applicationCategory": "UtilitiesApplication",
+          "applicationSubCategory": "Home & Property Maintenance",
+          "description": "Free home maintenance tracker and property upkeep log with recurring reminders, pre-built starter checklists, and durable service records with PDF export.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "installUrl": [
+            "https://apps.apple.com/us/app/homehandy-home-maintenance/id6763947552",
+            "https://play.google.com/store/apps/details?id=com.drodriguez.homehandy"
+          ],
+          "featureList": [
+            "Recurring maintenance reminders (days, weeks, months, seasons)",
+            "Instant one-tap job completion logging with photo receipts",
+            "Pre-built starter packs for HVAC, kitchen, plumbing, safety, and exterior",
+            "Durable service history with PDF export for insurance and home sale",
+            "100% offline-first privacy with no mandatory sign-up"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://homehandy.store/#website",
+          "url": "https://homehandy.store/",
+          "name": "HomeHandy",
+          "description": "Official website of HomeHandy, the friendly home maintenance tracker.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://homehandy.store/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is a home maintenance tracker?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A home maintenance tracker is an app or digital log that helps homeowners schedule, monitor, and record routine upkeep tasks for their property. It tracks appliances, HVAC systems, plumbing, and structural elements to prevent costly repairs and preserve property value over time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What tasks should be in a routine home maintenance schedule?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An essential home maintenance schedule includes replacing HVAC filters every 30 to 90 days, testing smoke and carbon monoxide alarms monthly, inspecting under-sink plumbing for leaks, cleaning gutters in autumn, flushing water heaters annually, and servicing seasonal heating and cooling equipment before extreme weather."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does HomeHandy handle recurring tasks and seasonal windows?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "HomeHandy provides flexible recurrence intervals in days, weeks, months, or years, alongside seasonal windows like autumn or spring. You can customize unique cadences, such as refilling water softener salt every 6 weeks or winterizing exterior hose bibs before first freeze."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does HomeHandy share personal data or sell leads to contractors?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. HomeHandy is built with an offline-first privacy model. It never sells your contact information to contractors or service marketplaces. Your home details, task photos, repair costs, and service history remain stored securely on your own device."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I export my home maintenance history when selling my property?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. HomeHandy allows you to generate and export a complete PDF maintenance report at any time. This report documents completed service dates, attached receipts, notes, and maintenance costs, providing verified proof of care for buyers, appraisers, and home inspectors."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>

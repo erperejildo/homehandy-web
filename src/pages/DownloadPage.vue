@@ -7,12 +7,19 @@ import { STORE_URLS } from '@/config'
   <div class="download-page">
     <section class="section">
       <div class="container download-page__inner">
-        <span class="eyebrow">Download</span>
+        <span class="eyebrow">Download Free Home Maintenance App</span>
         <h1 class="download-page__title">Get HomeHandy for free</h1>
         <p class="section-subtitle">
-          Available on both app stores. Pick your platform, or use the big button: it already knows
-          which device you're on.
+          The complete home maintenance tracker for iOS and Android. Available on both app stores
+          with zero ads, offline-first privacy, and no mandatory account creation.
         </p>
+
+        <div class="download-page__badges">
+          <span class="chip">100% Free Forever</span>
+          <span class="chip chip--info">No Account Required</span>
+          <span class="chip chip--warm">Offline-First Privacy</span>
+          <span class="chip chip--sky">PDF Maintenance Reports</span>
+        </div>
 
         <DownloadButtons />
 
@@ -54,6 +61,13 @@ import { STORE_URLS } from '@/config'
 
 .download-page__title {
   margin-bottom: var(--space-md);
+}
+
+.download-page__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
 }
 
 .download-page__stores {

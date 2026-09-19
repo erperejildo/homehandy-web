@@ -84,6 +84,69 @@ const stats = [
   { value: '90 days', label: 'filter reminders' },
   { value: 'PDF', label: 'maintenance reports' },
 ]
+
+const openFaqIndex = ref<number | null>(0)
+
+const faqs = [
+  {
+    question: 'What is a home maintenance tracker?',
+    answer:
+      'A home maintenance tracker is an app or digital log that helps homeowners schedule, monitor, and record routine upkeep tasks for their property. It tracks appliances, HVAC systems, plumbing, and structural elements to prevent costly repairs and preserve property value over time.',
+  },
+  {
+    question: 'What tasks should be in a routine home maintenance schedule?',
+    answer:
+      'An essential home maintenance schedule includes replacing HVAC filters every 30 to 90 days, testing smoke and carbon monoxide alarms monthly, inspecting under-sink plumbing for leaks, cleaning gutters in autumn, flushing water heaters annually, and servicing seasonal heating and cooling equipment before extreme weather.',
+  },
+  {
+    question: 'How does HomeHandy handle recurring tasks and seasonal windows?',
+    answer:
+      'HomeHandy provides flexible recurrence intervals in days, weeks, months, or years, alongside seasonal windows like autumn or spring. You can customize unique cadences, such as refilling water softener salt every 6 weeks or winterizing exterior hose bibs before first freeze.',
+  },
+  {
+    question: 'Does HomeHandy share personal data or sell leads to contractors?',
+    answer:
+      'No. HomeHandy is built with an offline-first privacy model. It never sells your contact information to contractors or service marketplaces. Your home details, task photos, repair costs, and service history remain stored securely on your own device.',
+  },
+  {
+    question: 'Can I export my home maintenance history when selling my property?',
+    answer:
+      'Yes. HomeHandy allows you to generate and export a complete PDF maintenance report at any time. This report documents completed service dates, attached receipts, notes, and maintenance costs, providing verified proof of care for buyers, appraisers, and home inspectors.',
+  },
+]
+
+const comparisonRows = [
+  {
+    feature: 'Recurrence flexibility',
+    homehandy: 'Days, months, years, or seasonal windows (e.g. every 6 weeks)',
+    traditional: 'Rigid monthly or quarterly presets only',
+    marketplaces: 'Rarely supports custom recurrence',
+  },
+  {
+    feature: 'Maintenance packs & checklists',
+    homehandy: '5 pre-built starter packs, 100% editable and customizable',
+    traditional: 'Hardcoded templates that are clunky to modify',
+    marketplaces: 'Prompts you to book a third-party service provider',
+  },
+  {
+    feature: 'Data privacy & ads',
+    homehandy: '100% offline-first, no account required, zero ad spam',
+    traditional: 'Mandatory sign-ups and cloud tracking',
+    marketplaces: 'Sells your contact details to local contractors as leads',
+  },
+  {
+    feature: 'Durable history & proof',
+    homehandy: 'Permanent service log with photo receipts & 1-tap PDF export',
+    traditional: 'Basic checkmark history; export often paywalled',
+    marketplaces: 'Only retains invoices from booked contractors',
+  },
+  {
+    feature: 'Cost & access',
+    homehandy: 'Free forever on iOS & Android',
+    traditional: 'Monthly or yearly subscriptions',
+    marketplaces: 'Hidden booking fees or commission markups',
+  },
+]
 </script>
 
 <template>
@@ -92,11 +155,12 @@ const stats = [
     <section class="hero">
       <div class="container hero__inner">
         <div v-reveal class="hero__text card">
-          <span class="chip">Free on iOS &amp; Android</span>
+          <span class="chip">Free Home Maintenance Tracker · iOS &amp; Android</span>
           <h1 class="hero__title">{{ APP_TAGLINE }}</h1>
           <p class="hero__subtitle">
-            HomeHandy keeps every maintenance job on your radar, from the HVAC filter to the smoke
-            alarms, so nothing quietly breaks while life gets busy.
+            HomeHandy is the friendly home maintenance tracker for iOS &amp; Android. Keep every
+            upkeep job on your radar — from HVAC filters and plumbing to seasonal gutters — so
+            routine tasks never turn into emergency repairs.
           </p>
           <DownloadButtons />
           <p class="hero__reassurance">Free forever. No account required.</p>
@@ -162,6 +226,43 @@ const stats = [
         </template>
       </div>
     </div>
+
+    <!-- What is HomeHandy: Definition & Cost Savings Insight -->
+    <section class="section definition-section">
+      <div class="container">
+        <div class="definition-grid">
+          <div v-reveal class="card definition-card">
+            <span class="eyebrow">AEO Definition</span>
+            <h2 class="section-title">What is HomeHandy?</h2>
+            <p class="definition-text">
+              <strong>HomeHandy</strong> is an offline-first home maintenance tracker and property
+              upkeep organizer designed for homeowners. It simplifies preventive home care through
+              flexible recurring reminders, one-tap job completion logging with photo receipts, and
+              pre-built starter checklists. Unlike contractor marketplace apps, HomeHandy protects
+              your privacy and keeps your service history completely under your control.
+            </p>
+            <div class="definition-points">
+              <span class="chip">Offline-first privacy</span>
+              <span class="chip chip--info">Flexible recurrence</span>
+              <span class="chip chip--warm">Permanent service log</span>
+            </div>
+          </div>
+
+          <div v-reveal="'right'" class="card card--outline stat-insight-card">
+            <span class="eyebrow">Preventive care payoff</span>
+            <h3 class="stat-insight-title">Save up to $3,150/year in preventable repairs</h3>
+            <p class="stat-insight-quote">
+              &ldquo;According to the Hippo Home Care Index (2024), proactive home maintenance saves
+              homeowners an average of $3,150 annually by preventing catastrophic water damage, HVAC
+              breakdowns, and premature roof replacement.&rdquo;
+            </p>
+            <p class="stat-insight-source">
+              Source: Hippo Home Care Index &amp; HomeAdvisor Cost Studies (2024)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Core features: interactive tabs -->
     <section class="section">
@@ -245,6 +346,41 @@ const stats = [
       </div>
     </section>
 
+    <!-- Comparison Table -->
+    <section class="section comparison-section">
+      <div class="container">
+        <span class="eyebrow">Comparison</span>
+        <h2 class="section-title">How HomeHandy compares to other home apps</h2>
+        <p class="section-subtitle">
+          Built for homeowners who want honest, durable maintenance tracking — not aggressive
+          contractor directories or rigid schedules.
+        </p>
+
+        <div v-reveal class="card card--outline comparison-card">
+          <div class="table-responsive">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th class="is-highlighted">HomeHandy</th>
+                  <th>Rigid Maintenance Apps</th>
+                  <th>Contractor Marketplaces</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in comparisonRows" :key="row.feature">
+                  <td class="comparison-feature">{{ row.feature }}</td>
+                  <td class="is-highlighted">{{ row.homehandy }}</td>
+                  <td class="comparison-competitor">{{ row.traditional }}</td>
+                  <td class="comparison-competitor">{{ row.marketplaces }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Dark section -->
     <section class="section section--dark">
       <div class="container dark-section">
@@ -305,6 +441,42 @@ const stats = [
             <span class="chip chip--sky">PDF</span>
             <span>Export the whole report in one tap</span>
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+      <div class="container">
+        <span class="eyebrow">Home Maintenance FAQ</span>
+        <h2 class="section-title">Frequently asked questions about home maintenance</h2>
+        <p class="section-subtitle">
+          Everything you need to know about scheduling upkeep, seasonal home tasks, and preserving
+          your property value.
+        </p>
+
+        <div class="faq-list">
+          <article
+            v-for="(faq, index) in faqs"
+            :key="faq.question"
+            v-reveal
+            class="card faq-item"
+            :class="{ 'is-open': openFaqIndex === index }"
+          >
+            <button
+              class="faq-question"
+              :aria-expanded="openFaqIndex === index"
+              @click="openFaqIndex = openFaqIndex === index ? null : index"
+            >
+              <span class="faq-question__text">{{ faq.question }}</span>
+              <span class="faq-question__toggle" aria-hidden="true">{{
+                openFaqIndex === index ? '−' : '+'
+              }}</span>
+            </button>
+            <div v-show="openFaqIndex === index" class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -855,7 +1027,205 @@ const stats = [
   font-size: var(--font-size-caption);
 }
 
+.definition-section {
+  padding-top: var(--space-3xl);
+}
+
+.definition-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.definition-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+}
+
+.definition-text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-ink);
+
+  strong {
+    color: var(--color-ink-active);
+  }
+}
+
+.definition-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.stat-insight-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl);
+  background: var(--color-surface-tint);
+}
+
+.stat-insight-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-h3);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-ink);
+}
+
+.stat-insight-quote {
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body);
+  color: var(--color-ink-active);
+  font-style: italic;
+}
+
+.stat-insight-source {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+  font-weight: var(--font-weight-body-medium);
+}
+
+.comparison-section {
+  padding-top: var(--space-4xl);
+}
+
+.comparison-card {
+  padding: 0;
+  overflow: hidden;
+  margin-top: var(--space-xl);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--font-size-body-small);
+
+  th,
+  td {
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--color-outline);
+  }
+
+  th {
+    background: var(--color-background-bottom);
+    color: var(--color-muted);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-body-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-kicker);
+
+    &.is-highlighted {
+      background: var(--color-surface-tint);
+      color: var(--color-primary);
+    }
+  }
+
+  td.is-highlighted {
+    background: var(--color-surface-tint);
+    font-weight: var(--font-weight-body-bold);
+    color: var(--color-ink);
+  }
+
+  .comparison-feature {
+    font-weight: var(--font-weight-body-medium);
+    color: var(--color-ink);
+  }
+
+  .comparison-competitor {
+    color: var(--color-muted);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.faq-section {
+  padding-top: var(--space-4xl);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.faq-item {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-outline);
+  transition: border-color var(--motion-quick) var(--motion-curve);
+
+  &.is-open {
+    border-color: var(--color-primary);
+  }
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-lg) var(--space-xl);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  gap: var(--space-md);
+
+  &:hover {
+    background: var(--color-background-bottom);
+  }
+}
+
+.faq-question__text {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-title);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.faq-question__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-tint);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-body-bold);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.faq-answer {
+  padding: 0 var(--space-xl) var(--space-lg);
+  color: var(--color-ink-active);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body);
+}
+
 @media (max-width: 720px) {
+  .definition-grid {
+    grid-template-columns: 1fr;
+  }
   .hero {
     padding-block: var(--space-3xl) var(--space-4xl);
   }

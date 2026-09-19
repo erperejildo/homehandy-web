@@ -64,13 +64,28 @@ const packs = [
   <div class="packs-page">
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Starter Packs</span>
-        <h1 class="packs-page__title">Plans built from real home experience</h1>
+        <span class="eyebrow">Home Maintenance Checklists</span>
+        <h1 class="packs-page__title">Home maintenance checklists &amp; starter packs</h1>
         <p class="section-subtitle">
-          Choose the packs that match your home and HomeHandy seeds your plan instantly. Every task
-          is editable, so adjust intervals, priorities and costs until they fit your house
-          perfectly.
+          Plans built from real home experience. Choose the packs that match your home and HomeHandy
+          seeds your maintenance plan instantly. Every checklist item is fully editable — adjust
+          intervals, priorities, and cost estimates until they fit your house perfectly.
         </p>
+      </div>
+    </section>
+
+    <section class="section packs-page__intro">
+      <div class="container">
+        <div v-reveal class="card packs-page__intro-card">
+          <span class="eyebrow">Checklist Architecture</span>
+          <h2 class="section-title">Pre-configured home maintenance checklists for every system</h2>
+          <p class="packs-page__intro-text">
+            Most homes fail when maintenance tasks are buried in generic to-do lists. HomeHandy
+            categorizes preventive maintenance into 5 specialized domains — HVAC, kitchen
+            appliances, plumbing, life safety, and exterior weatherproofing — giving you verified
+            cadences and estimated annual budgets.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -115,6 +130,24 @@ const packs = [
 <style scoped lang="scss">
 .packs-page__title {
   margin-bottom: var(--space-md);
+}
+
+.packs-page__intro {
+  padding-top: 0;
+  padding-bottom: var(--space-xl);
+}
+
+.packs-page__intro-card {
+  padding: var(--space-2xl);
+  background: var(--color-surface-tint);
+  border: 1px solid var(--color-outline);
+}
+
+.packs-page__intro-text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-ink-active);
+  max-width: 640px;
 }
 
 .packs-page__packs {

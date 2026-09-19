@@ -2,7 +2,7 @@
   "name": "HomeHandy",
   "short_name": "HomeHandy",
   "description": "Home maintenance tracker — reminders, history and peace of mind.",
-  "start_url": "/homehandy-web/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#FAF7F4",
   "theme_color": "#7CB342",

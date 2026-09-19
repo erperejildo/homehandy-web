@@ -60,11 +60,12 @@ const exampleTasks = [
   <div class="tasks-page">
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Tasks &amp; Reminders</span>
-        <h1 class="tasks-page__title">Reminders that fit how homes actually work</h1>
+        <span class="eyebrow">Home Maintenance Schedule</span>
+        <h1 class="tasks-page__title">Home maintenance schedule &amp; task reminders</h1>
         <p class="section-subtitle">
-          HomeHandy schedules every task around your home, not around a one-size-fits-all template.
-          Each task gets a recurrence, a priority and a reminder lead time.
+          Reminders that fit how homes actually work. HomeHandy schedules every task around your
+          home, not around a one-size-fits-all template. Each task gets a flexible recurrence,
+          priority level, and reminder lead time.
         </p>
       </div>
     </section>
@@ -83,6 +84,52 @@ const exampleTasks = [
             :tint="card.tint"
             class="tasks-page__feature"
           />
+        </div>
+      </div>
+    </section>
+
+    <!-- Step-by-Step Guide -->
+    <section class="section tasks-page__steps">
+      <div class="container">
+        <span class="eyebrow">Step-by-Step Planner</span>
+        <h2 class="section-title">How to build a realistic home maintenance schedule</h2>
+        <p class="section-subtitle">
+          Prevent unexpected breakdown costs by organizing your routine home upkeep into four
+          practical steps.
+        </p>
+        <div class="tasks-page__steps-grid">
+          <div v-reveal class="card step-card">
+            <span class="step-card__num">01</span>
+            <h3 class="step-card__title">Audit essential systems</h3>
+            <p class="step-card__text">
+              Identify appliances and building elements requiring active upkeep: HVAC furnace
+              filters, water heaters, plumbing supply lines, and smoke/CO alarms.
+            </p>
+          </div>
+          <div v-reveal class="card step-card">
+            <span class="step-card__num">02</span>
+            <h3 class="step-card__title">Assign true operating intervals</h3>
+            <p class="step-card__text">
+              Avoid rigid monthly calendars. Use real-world cycles like 90 days for air filters, 6
+              weeks for water softener salt, or 6 months for refrigerator coils.
+            </p>
+          </div>
+          <div v-reveal class="card step-card">
+            <span class="step-card__num">03</span>
+            <h3 class="step-card__title">Group seasonal upkeep</h3>
+            <p class="step-card__text">
+              Bundle weather-dependent jobs into seasonal windows: autumn for gutter cleaning and
+              pipe winterization; spring for siding wash and AC checkups.
+            </p>
+          </div>
+          <div v-reveal class="card step-card">
+            <span class="step-card__num">04</span>
+            <h3 class="step-card__title">Configure reminder lead times</h3>
+            <p class="step-card__text">
+              Set alerts days ahead of due dates so you have replacement filters, tools, and
+              supplies in hand before the weekend.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -154,6 +201,45 @@ const exampleTasks = [
 
 .tasks-page__feature:nth-child(3) {
   margin-top: var(--space-4xl);
+}
+
+.tasks-page__steps {
+  padding-top: 0;
+}
+
+.tasks-page__steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+}
+
+.step-card__num {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-h3);
+  color: var(--color-primary);
+}
+
+.step-card__title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body-bold);
+  color: var(--color-ink);
+}
+
+.step-card__text {
+  color: var(--color-muted);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body);
 }
 
 .tasks-page__table {
