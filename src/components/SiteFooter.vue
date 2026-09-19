@@ -20,6 +20,7 @@ const links = [
       </div>
 
       <nav class="site-footer__nav" aria-label="Footer navigation">
+        <p class="site-footer__heading">Pages</p>
         <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="site-footer__link">
           {{ link.label }}
         </RouterLink>
@@ -38,9 +39,9 @@ const links = [
 <style scoped lang="scss">
 .site-footer {
   background: var(--color-ink);
-  color: var(--color-background-top);
-  padding-block: var(--space-2xl);
-  margin-top: var(--space-3xl);
+  color: var(--color-on-dark);
+  padding-block: var(--space-4xl) var(--space-2xl);
+  margin-top: var(--space-5xl);
 }
 
 .site-footer__inner {
@@ -48,41 +49,53 @@ const links = [
   flex-wrap: wrap;
   gap: var(--space-2xl);
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .site-footer__brand {
-  max-width: 480px;
+  max-width: 520px;
 }
 
 .site-footer__name {
   font-family: var(--font-display);
   font-weight: var(--font-weight-display);
-  font-size: var(--font-size-h3);
-  margin-bottom: var(--space-sm);
-  color: var(--color-surface);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-display);
+  color: var(--color-on-dark);
+  margin-bottom: var(--space-lg);
 }
 
 .site-footer__description {
   font-size: var(--font-size-body-small);
-  color: var(--color-background-top);
-  opacity: 0.8;
+  color: var(--color-on-dark-muted);
+  max-width: 420px;
 }
 
 .site-footer__nav {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  min-width: 200px;
+}
+
+.site-footer__heading {
+  font-size: var(--font-size-kicker);
+  font-weight: var(--font-weight-body-bold);
+  letter-spacing: var(--letter-spacing-kicker);
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+  margin-bottom: var(--space-sm);
 }
 
 .site-footer__link {
-  color: var(--color-background-top);
+  color: var(--color-on-dark-muted);
   font-size: var(--font-size-body-small);
-  opacity: 0.8;
-  transition: opacity var(--motion-quick) var(--motion-curve);
+  padding-block: var(--space-xs);
+  transition: color var(--motion-quick) var(--motion-curve);
 
   &:hover {
     color: var(--color-primary-light);
-    opacity: 1;
   }
 }
 
@@ -91,15 +104,14 @@ const links = [
   flex-wrap: wrap;
   gap: var(--space-md);
   justify-content: space-between;
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-3xl);
   padding-top: var(--space-lg);
-  border-top: 1px solid var(--color-ink-active);
+  border-top: 1px solid var(--color-outline-dark);
   font-size: var(--font-size-caption);
-  color: var(--color-background-top);
-  opacity: 0.7;
+  color: var(--color-on-dark-faint);
 
   a {
-    color: var(--color-background-top);
+    color: var(--color-on-dark-faint);
 
     &:hover {
       color: var(--color-primary-light);

@@ -2,6 +2,13 @@
 import { computed } from 'vue'
 import { STORE_URLS, detectPlatform } from '@/config'
 
+const props = withDefaults(
+  defineProps<{
+    dark?: boolean
+  }>(),
+  { dark: false },
+)
+
 const platform = computed(() => detectPlatform())
 
 const primary = computed(() =>
@@ -22,7 +29,13 @@ const secondary = computed(() =>
     <a :href="primary.url" class="btn btn--primary btn--lg" rel="noopener">
       {{ primary.label }}
     </a>
-    <a :href="secondary.url" class="btn btn--outline" rel="noopener">{{ secondary.label }}</a>
+    <a
+      :href="secondary.url"
+      :class="props.dark ? 'btn btn--dark-ghost' : 'btn btn--outline'"
+      rel="noopener"
+    >
+      {{ secondary.label }}
+    </a>
   </div>
 </template>
 

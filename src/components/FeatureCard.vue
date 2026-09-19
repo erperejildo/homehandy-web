@@ -1,14 +1,20 @@
 <script setup lang="ts">
-defineProps<{
-  title: string
-  description: string
-  chip?: string
-}>()
+withDefaults(
+  defineProps<{
+    title: string
+    description: string
+    chip?: string
+    tint?: 'tint' | 'info' | 'warm' | 'sky' | 'sand'
+  }>(),
+  { tint: 'tint' },
+)
 </script>
 
 <template>
   <article class="feature-card card">
-    <span v-if="chip" class="chip">{{ chip }}</span>
+    <span v-if="chip" class="chip" :class="tint !== 'tint' ? `chip--${tint}` : null">{{
+      chip
+    }}</span>
     <h3 class="feature-card__title">{{ title }}</h3>
     <p class="feature-card__description">{{ description }}</p>
   </article>

@@ -1,6 +1,8 @@
 // HomeHandy marketing site — single source of truth for every design value.
-// Mirrors the app theme: /Users/dani/Desktop/repos/home-handy/lib/core/theme/app_theme.dart
-// Rule: component styles must ONLY consume var(--...) — never hardcode values.
+// Colors mirror the app theme: /Users/dani/Desktop/repos/home-handy/lib/core/theme/app_theme.dart
+// Design language: cream-on-light materiality, one accent, tight radii, big
+// display type. Rule: component styles must ONLY consume var(--...) — never
+// hardcode values.
 
 // ---------------------------------------------------------------------------
 // Font faces (self-hosted from Fontshare)
@@ -41,7 +43,7 @@
 // Design tokens
 // ---------------------------------------------------------------------------
 :root {
-  // Colors
+  // Colors (values locked to the app palette — do not change)
   --color-background-top: #f5f5f5;
   --color-background-bottom: #faf7f4;
   --color-surface: #ffffff;
@@ -58,8 +60,17 @@
   --color-warm-tint: #f8eee7;
   --color-success: #7cb342;
   --color-danger: #e57373;
-  --color-on-primary: #ffffff;
   --color-selection: rgba(124, 179, 66, 0.2);
+
+  // Derived surfaces (same palette, new roles)
+  --color-ink-ghost: rgba(62, 39, 35, 0.08);
+  --color-ink-ghost-hover: rgba(62, 39, 35, 0.16);
+  --color-on-dark: #faf7f4;
+  --color-on-dark-muted: rgba(250, 247, 244, 0.72);
+  --color-on-dark-faint: rgba(250, 247, 244, 0.5);
+  --color-on-dark-ghost: rgba(250, 247, 244, 0.08);
+  --color-on-dark-ghost-hover: rgba(250, 247, 244, 0.16);
+  --color-outline-dark: rgba(250, 247, 244, 0.16);
 
   // Fonts
   --font-display: 'Cabinet Grotesk', 'Satoshi', sans-serif;
@@ -69,35 +80,41 @@
   --font-weight-body-medium: 500;
   --font-weight-body-bold: 700;
 
-  // Type scale
-  --font-size-display: 56px;
+  // Type scale — big display, quiet body
+  --font-size-display: clamp(48px, 6.5vw, 88px);
   --font-size-display-mobile: 40px;
-  --font-size-h2: 36px;
+  --font-size-h2: clamp(32px, 4.5vw, 56px);
   --font-size-h3: 24px;
   --font-size-title: 18px;
   --font-size-body: 16px;
   --font-size-body-small: 15px;
   --font-size-caption: 13px;
+  --font-size-kicker: 12px;
+  --line-height-display: 0.95;
   --line-height-body: 1.42;
   --line-height-tight: 1.35;
-  --letter-spacing-display: -1.6px;
+  --letter-spacing-display: -2.5px;
   --letter-spacing-heading: -0.8px;
   --letter-spacing-tight: -0.3px;
+  --letter-spacing-kicker: 0.08em;
 
-  // Radii
-  --radius-card: 32px;
-  --radius-button: 20px;
-  --radius-button-form: 18px;
-  --radius-input: 24px;
-  --radius-popup: 24px;
-  --radius-sheet: 32px;
+  // Radii — tight and editorial
+  --radius-card: 16px;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-button: 12px;
+  --radius-button-form: 12px;
+  --radius-input: 16px;
+  --radius-popup: 16px;
+  --radius-sheet: 24px;
   --radius-pill: 999px;
 
-  // Shadows
-  --shadow-card: 0 8px 32px rgba(62, 39, 35, 0.08);
-  --shadow-button: 0 8px 24px rgba(124, 179, 66, 0.35);
+  // Shadows — flat design, depth from tinted surfaces
+  --shadow-card: none;
+  --shadow-button: none;
 
-  // Gradients
+  // Gradients (kept as tokens; the page no longer paints a gradient)
   --gradient-primary: linear-gradient(
     135deg,
     var(--color-primary) 0%,
@@ -113,7 +130,9 @@
   --motion-quick: 150ms;
   --motion-medium: 220ms;
   --motion-slow: 300ms;
+  --motion-reveal: 600ms;
   --motion-curve: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-curve-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   // Spacing
   --space-xs: 8px;
@@ -124,9 +143,11 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
   --space-4xl: 96px;
+  --space-5xl: 128px;
+  --space-6xl: 160px;
 
   // Layout
-  --container-max: 1120px;
+  --container-max: 1200px;
   --container-gutter: var(--space-lg);
   --header-height: 72px;
 
@@ -155,7 +176,7 @@ body {
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
   color: var(--color-ink);
-  background: var(--gradient-background) fixed;
+  background: var(--color-background-top);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -165,13 +186,15 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: var(--font-weight-display);
-  line-height: var(--line-height-tight);
+  line-height: var(--line-height-display);
   letter-spacing: var(--letter-spacing-heading);
+  text-wrap: balance;
 }
 
 h1 {
   font-size: var(--font-size-display);
   letter-spacing: var(--letter-spacing-display);
+  hyphens: manual;
 }
 
 h2 {
@@ -180,6 +203,7 @@ h2 {
 
 h3 {
   font-size: var(--font-size-h3);
+  line-height: var(--line-height-tight);
 }
 
 p {
@@ -216,24 +240,44 @@ img {
 }
 
 .section {
-  padding-block: var(--space-3xl);
+  padding-block: var(--space-4xl);
 }
 
+.section--dark {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+// Cards are cream material on the light page, white material on dark.
 .card {
-  background: var(--color-surface);
+  background: var(--color-background-bottom);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
   padding: var(--space-xl);
 }
 
+.card--outline {
+  border: 1px solid var(--color-outline);
+}
+
+.card--dark {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  border-radius: var(--radius-lg);
+}
+
+// Small uppercase kicker (Kit-style microcopy)
 .eyebrow {
   display: inline-block;
   font-family: var(--font-body);
   font-weight: var(--font-weight-body-bold);
-  font-size: var(--font-size-caption);
-  letter-spacing: var(--letter-spacing-tight);
+  font-size: var(--font-size-kicker);
+  letter-spacing: var(--letter-spacing-kicker);
   text-transform: uppercase;
   color: var(--color-primary);
+}
+
+.eyebrow--dark {
+  color: var(--color-primary-light);
 }
 
 .section-title {
@@ -268,6 +312,21 @@ img {
   background: var(--color-warm-tint);
 }
 
+.chip--sky {
+  background: var(--color-secondary);
+}
+
+.chip--sand {
+  background: var(--color-tertiary);
+}
+
+.chip--on-dark {
+  background: var(--color-on-dark-ghost);
+  color: var(--color-on-dark);
+}
+
+// Buttons — solid accent with ink text (hover goes lighter), flat ink
+// outlines, ghost chips. No floaty shadows.
 .btn {
   display: inline-flex;
   align-items: center;
@@ -276,45 +335,57 @@ img {
   min-height: var(--button-min-height);
   padding: var(--space-sm) var(--space-xl);
   border: none;
-  border-radius: var(--radius-button-form);
+  border-radius: var(--radius-button);
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-body-bold);
   cursor: pointer;
   text-decoration: none;
-  transition:
-    transform var(--motion-quick) var(--motion-curve),
-    box-shadow var(--motion-medium) var(--motion-curve),
-    background-color var(--motion-quick) var(--motion-curve);
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+  transition: background-color var(--motion-quick) var(--motion-curve);
 
   &:active {
-    transform: translateY(0);
+    transform: scale(0.98);
   }
 }
 
 .btn--primary {
-  background: var(--gradient-primary);
-  color: var(--color-on-primary);
-  box-shadow: var(--shadow-button);
+  background: var(--color-primary);
+  color: var(--color-ink);
 
   &:hover {
-    color: var(--color-on-primary);
-    box-shadow: var(--shadow-button);
+    background: var(--color-primary-light);
+    color: var(--color-ink);
   }
 }
 
 .btn--outline {
-  background: var(--color-surface);
-  color: var(--color-ink-active);
-  border: 1px solid var(--color-outline);
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
 
   &:hover {
-    color: var(--color-ink-active);
-    border-color: var(--color-primary);
+    background: var(--color-ink-ghost);
+    color: var(--color-ink);
+  }
+}
+
+.btn--ghost {
+  background: var(--color-ink-ghost);
+  color: var(--color-ink);
+
+  &:hover {
+    background: var(--color-ink-ghost-hover);
+    color: var(--color-ink);
+  }
+}
+
+.btn--dark-ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+
+  &:hover {
+    background: var(--color-on-dark-ghost);
+    color: var(--color-on-dark);
   }
 }
 
@@ -323,6 +394,79 @@ img {
   padding-inline: var(--space-2xl);
   border-radius: var(--radius-button);
   font-size: var(--font-size-title);
+}
+
+// Scroll reveal (transform + opacity only; respects reduced motion)
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--motion-reveal) var(--motion-curve-out),
+    transform var(--motion-reveal) var(--motion-curve-out);
+}
+
+.reveal--left {
+  transform: translateX(-20px);
+}
+
+.reveal--right {
+  transform: translateX(20px);
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+// Marquee band (transform-only loop, pauses on hover)
+.marquee {
+  overflow: hidden;
+  background: var(--color-background-bottom);
+  border-block: 1px solid var(--color-outline);
+  padding-block: var(--space-md);
+}
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xl);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-title);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-ink);
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .visually-hidden {
@@ -337,6 +481,25 @@ img {
   border: 0;
 }
 
+// ---------------------------------------------------------------------------
+// Motion preferences
+// ---------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee__track {
+    animation: none;
+  }
+}
+
 @media (max-width: 720px) {
   h1 {
     font-size: var(--font-size-display-mobile);
@@ -347,6 +510,6 @@ img {
   }
 
   .section {
-    padding-block: var(--space-2xl);
+    padding-block: var(--space-3xl);
   }
 }
