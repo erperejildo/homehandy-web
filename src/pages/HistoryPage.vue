@@ -38,12 +38,53 @@ const historyFeatures = [
   <div class="history-page">
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Service History</span>
-        <h1 class="history-page__title">A maintenance history you can rely on</h1>
+        <span class="eyebrow">Service History &amp; Maintenance Log</span>
+        <h1 class="history-page__title">Home maintenance log &amp; service history</h1>
         <p class="section-subtitle">
-          Homes run on thousands of small jobs. HomeHandy remembers them all, so you can prove your
-          home has been cared for, and never re-buy a part you already replaced.
+          A maintenance history you can rely on. Homes run on thousands of small jobs. HomeHandy
+          remembers them all with dates, repair costs, and photo receipts — so you can prove your
+          home has been cared for, prevent duplicate repairs, and export a clean PDF maintenance
+          report anytime.
         </p>
+      </div>
+    </section>
+
+    <!-- Resale Value & Verification Block -->
+    <section class="section history-page__value">
+      <div class="container">
+        <div class="history-page__value-grid">
+          <div v-reveal class="card history-page__value-card">
+            <span class="eyebrow">Protecting Resale Value</span>
+            <h2 class="section-title">Why a verifiable home maintenance log pays off</h2>
+            <p class="history-page__value-text">
+              Real estate inspections and buyer negotiations often stall over missing maintenance
+              records. A dated, photo-backed service history proves diligent care for major systems
+              — HVAC, water heaters, roofing, and plumbing — reassuring prospective buyers, reducing
+              escrow credits, and speeding insurance claims.
+            </p>
+          </div>
+          <div v-reveal="'right'" class="card card--outline history-page__checklist-card">
+            <h3 class="history-page__checklist-title">What HomeHandy records per task:</h3>
+            <ul class="history-page__checklist">
+              <li>
+                <strong>Exact completion date:</strong> Know precisely when a filter or part was
+                serviced.
+              </li>
+              <li>
+                <strong>Photo documentation:</strong> Store receipt photos, model tags, and finished
+                work proof.
+              </li>
+              <li>
+                <strong>Actual costs incurred:</strong> Track maintenance expenses for household
+                budgeting and tax records.
+              </li>
+              <li>
+                <strong>Technician &amp; vendor contacts:</strong> Remember which reliable plumber
+                or electrician did the work.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -212,7 +253,71 @@ const historyFeatures = [
   color: var(--color-on-dark-muted);
 }
 
+.history-page__value {
+  padding-top: 0;
+}
+
+.history-page__value-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.history-page__value-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+}
+
+.history-page__value-text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-ink);
+}
+
+.history-page__checklist-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl);
+  background: var(--color-surface-tint);
+}
+
+.history-page__checklist-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: var(--font-size-title);
+  color: var(--color-ink);
+}
+
+.history-page__checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  li {
+    font-size: var(--font-size-body-small);
+    color: var(--color-ink-active);
+    line-height: var(--line-height-body);
+
+    strong {
+      color: var(--color-ink);
+    }
+  }
+}
+
 @media (max-width: 720px) {
+  .history-page__value-grid {
+    grid-template-columns: 1fr;
+  }
+
   .history-page__report {
     grid-template-columns: 1fr;
   }

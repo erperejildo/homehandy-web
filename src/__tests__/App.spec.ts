@@ -68,10 +68,12 @@ describe('pages', () => {
 })
 
 describe('seo', () => {
-  it('sets document title per route', async () => {
+  it('sets document title, meta description, and canonical link per route', async () => {
     await mountAt('/packs/')
-    expect(document.title).toBe('Starter Packs — HomeHandy')
+    expect(document.title).toBe('Home Maintenance Checklists & Starter Packs — HomeHandy')
     const meta = document.querySelector('meta[name="description"]')
-    expect(meta?.getAttribute('content')).toContain('Editable maintenance packs')
+    expect(meta?.getAttribute('content')).toContain('Editable home maintenance checklists')
+    const canonical = document.querySelector('link[rel="canonical"]')
+    expect(canonical?.getAttribute('href')).toBe('https://homehandy.store/packs/')
   })
 })

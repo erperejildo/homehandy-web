@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://erperejildo.github.io/homehandy-web/</loc>
+    <loc>https://homehandy.store/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://erperejildo.github.io/homehandy-web/tasks/</loc>
+    <loc>https://homehandy.store/tasks/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://erperejildo.github.io/homehandy-web/history/</loc>
+    <loc>https://homehandy.store/history/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://erperejildo.github.io/homehandy-web/packs/</loc>
+    <loc>https://homehandy.store/packs/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://erperejildo.github.io/homehandy-web/download/</loc>
+    <loc>https://homehandy.store/download/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

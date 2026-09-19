@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { APP_NAME, APP_DESCRIPTION } from '@/config'
+import { APP_NAME, APP_DESCRIPTION, SITE_URL } from '@/config'
 
 import HomePage from '@/pages/HomePage.vue'
 import TasksPage from '@/pages/TasksPage.vue'
@@ -7,7 +7,9 @@ import HistoryPage from '@/pages/HistoryPage.vue'
 import PacksPage from '@/pages/PacksPage.vue'
 import DownloadPage from '@/pages/DownloadPage.vue'
 
-export const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL
+// The site is served from the root of the custom domain. Keep the legacy
+// /homehandy-web/ subpath working too, in case the domain is ever removed.
+export const base = window.location.pathname.startsWith('/homehandy-web') ? '/homehandy-web/' : '/'
 
 const routes = [
   {
@@ -15,7 +17,7 @@ const routes = [
     name: 'home',
     component: HomePage,
     meta: {
-      title: `${APP_NAME} — Home maintenance made easy`,
+      title: `${APP_NAME}: Home Maintenance Tracker & Upkeep Log`,
       description: APP_DESCRIPTION,
     },
   },
@@ -24,9 +26,9 @@ const routes = [
     name: 'tasks',
     component: TasksPage,
     meta: {
-      title: `Tasks & Reminders — ${APP_NAME}`,
+      title: `Home Maintenance Schedule & Reminders — ${APP_NAME}`,
       description:
-        'How HomeHandy schedules maintenance: flexible intervals, seasonal windows, priorities and reminder lead times.',
+        'Custom home maintenance schedule and task reminders. Set flexible intervals in days, months, or seasonal windows that match real-world home upkeep.',
     },
   },
   {
@@ -34,9 +36,9 @@ const routes = [
     name: 'history',
     component: HistoryPage,
     meta: {
-      title: `Service History — ${APP_NAME}`,
+      title: `Home Maintenance Log & Service History — ${APP_NAME}`,
       description:
-        'Every job recorded with dates and photos, plus a PDF maintenance report for warranties and home sales.',
+        'Durable home maintenance log with photo proof and repair costs. Export clean PDF service reports for insurance, warranties, and home resale value.',
     },
   },
   {
@@ -44,9 +46,9 @@ const routes = [
     name: 'packs',
     component: PacksPage,
     meta: {
-      title: `Starter Packs — ${APP_NAME}`,
+      title: `Home Maintenance Checklists & Starter Packs — ${APP_NAME}`,
       description:
-        'Editable maintenance packs for HVAC, kitchen, plumbing, safety and exterior — with real tasks, intervals and costs.',
+        'Editable home maintenance checklists for HVAC, kitchen, plumbing, safety, and exterior upkeep. Tailor intervals and costs to your home.',
     },
   },
   {
@@ -54,8 +56,9 @@ const routes = [
     name: 'download',
     component: DownloadPage,
     meta: {
-      title: `Download ${APP_NAME}`,
-      description: 'Get HomeHandy free on the App Store and Google Play.',
+      title: `Download ${APP_NAME}: Free Home Maintenance App`,
+      description:
+        'Download HomeHandy for iOS and Android. Free home maintenance tracker with smart reminders, customizable packs, and offline-first privacy.',
     },
   },
   {
@@ -72,18 +75,41 @@ const router = createRouter({
   },
 })
 
+function setMetaTag(selector: string, attrName: string, attrValue: string, content: string) {
+  let element = document.querySelector<HTMLMetaElement>(selector)
+  if (!element) {
+    element = document.createElement('meta')
+    element.setAttribute(attrName, attrValue)
+    document.head.appendChild(element)
+  }
+  element.setAttribute('content', content)
+}
+
+function setCanonicalTag(url: string) {
+  let element = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+  if (!element) {
+    element = document.createElement('link')
+    element.setAttribute('rel', 'canonical')
+    document.head.appendChild(element)
+  }
+  element.setAttribute('href', url)
+}
+
 router.afterEach((to) => {
   const title = (to.meta.title as string | undefined) ?? APP_NAME
   const description = (to.meta.description as string | undefined) ?? APP_DESCRIPTION
   document.title = title
 
-  let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]')
-  if (!meta) {
-    meta = document.createElement('meta')
-    meta.name = 'description'
-    document.head.appendChild(meta)
-  }
-  meta.content = description
+  setMetaTag('meta[name="description"]', 'name', 'description', description)
+  setMetaTag('meta[property="og:title"]', 'property', 'og:title', title)
+  setMetaTag('meta[property="og:description"]', 'property', 'og:description', description)
+  setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', title)
+  setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', description)
+
+  const normalizedPath = to.path.startsWith('/') ? to.path.slice(1) : to.path
+  const fullUrl = `${SITE_URL}/${normalizedPath}`
+  setCanonicalTag(fullUrl)
+  setMetaTag('meta[property="og:url"]', 'property', 'og:url', fullUrl)
 })
 
 export default router

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { detectPlatform, STORE_URLS, APP_NAME, BASE_PATH } from '@/config'
+import { detectPlatform, STORE_URLS, APP_NAME, SITE_URL } from '@/config'
 
 describe('config', () => {
   it('has the app store links', () => {
@@ -11,9 +11,9 @@ describe('config', () => {
     )
   })
 
-  it('has the app name and pages base path', () => {
+  it('has the app name and site url', () => {
     expect(APP_NAME).toBe('HomeHandy')
-    expect(BASE_PATH).toBe('/homehandy-web/')
+    expect(SITE_URL).toBe('https://homehandy.store')
   })
 
   it('detects iOS from the user agent', () => {
