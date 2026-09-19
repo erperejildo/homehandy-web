@@ -8,18 +8,21 @@ const recurrenceCards = [
     title: 'Days, months or years',
     description:
       'Replace the HVAC filter every 90 days, flush the water heater yearly. Any interval your home needs.',
+    tint: 'info' as const,
   },
   {
     chip: 'Seasonal',
     title: 'Seasonal windows',
     description:
       'Some jobs only make sense at a certain time of year. Clean gutters in autumn, pressure wash in spring.',
+    tint: 'warm' as const,
   },
   {
     chip: 'Real-world',
     title: 'Cadences that make sense',
     description:
       'Water softener salt every six weeks, not a rigid monthly reminder that drifts out of sync.',
+    tint: 'tint' as const,
   },
 ]
 
@@ -60,22 +63,25 @@ const exampleTasks = [
         <span class="eyebrow">Tasks &amp; Reminders</span>
         <h1 class="tasks-page__title">Reminders that fit how homes actually work</h1>
         <p class="section-subtitle">
-          HomeHandy schedules every task around your home — not around a one-size-fits-all template.
+          HomeHandy schedules every task around your home, not around a one-size-fits-all template.
           Each task gets a recurrence, a priority and a reminder lead time.
         </p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section tasks-page__recurrence">
       <div class="container">
         <h2 class="section-title">Recurrence your way</h2>
         <div class="tasks-page__grid">
           <FeatureCard
             v-for="card in recurrenceCards"
             :key="card.title"
+            v-reveal
             :chip="card.chip"
             :title="card.title"
             :description="card.description"
+            :tint="card.tint"
+            class="tasks-page__feature"
           />
         </div>
       </div>
@@ -84,7 +90,7 @@ const exampleTasks = [
     <section class="section">
       <div class="container">
         <h2 class="section-title">What a plan looks like</h2>
-        <div class="card tasks-page__table">
+        <div v-reveal class="card card--outline tasks-page__table">
           <table class="tasks-page__examples">
             <thead>
               <tr>
@@ -98,8 +104,15 @@ const exampleTasks = [
               <tr v-for="task in exampleTasks" :key="task.name">
                 <td>{{ task.name }}</td>
                 <td>{{ task.recurrence }}</td>
-                <td>{{ task.priority }}</td>
-                <td>{{ task.cost ?? '—' }}</td>
+                <td>
+                  <span
+                    class="tasks-page__priority"
+                    :class="{ 'is-critical': task.priority === 'Critical' }"
+                  >
+                    {{ task.priority }}
+                  </span>
+                </td>
+                <td class="tasks-page__cost">{{ task.cost ?? '–' }}</td>
               </tr>
             </tbody>
           </table>
@@ -108,9 +121,12 @@ const exampleTasks = [
     </section>
 
     <section class="section">
-      <div class="container tasks-page__cta card">
-        <h2 class="section-title">Get reminded before it's a problem</h2>
-        <DownloadButtons />
+      <div class="container">
+        <div v-reveal class="tasks-page__cta card--dark">
+          <h2 class="tasks-page__cta-title">Get reminded before it's a problem</h2>
+          <p class="tasks-page__cta-text">Set it once and HomeHandy keeps the rhythm for you.</p>
+          <DownloadButtons dark />
+        </div>
       </div>
     </section>
   </div>
@@ -121,10 +137,23 @@ const exampleTasks = [
   margin-bottom: var(--space-md);
 }
 
+.tasks-page__recurrence {
+  padding-top: 0;
+}
+
 .tasks-page__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
+  align-items: start;
+}
+
+.tasks-page__feature:nth-child(2) {
+  margin-top: var(--space-2xl);
+}
+
+.tasks-page__feature:nth-child(3) {
+  margin-top: var(--space-4xl);
 }
 
 .tasks-page__table {
@@ -149,7 +178,7 @@ const exampleTasks = [
     font-weight: var(--font-weight-body-medium);
     font-size: var(--font-size-caption);
     text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-tight);
+    letter-spacing: var(--letter-spacing-kicker);
   }
 
   tr:last-child td {
@@ -162,11 +191,58 @@ const exampleTasks = [
   }
 }
 
+.tasks-page__priority {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: var(--font-weight-body-medium);
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-pill);
+    background: var(--color-tertiary);
+  }
+
+  &.is-critical::before {
+    background: var(--color-danger);
+  }
+}
+
+.tasks-page__cost {
+  color: var(--color-muted);
+}
+
 .tasks-page__cta {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: var(--space-md);
+  padding: var(--space-3xl) var(--space-2xl);
+}
+
+.tasks-page__cta-title {
+  color: var(--color-on-dark);
+}
+
+.tasks-page__cta-text {
+  color: var(--color-on-dark-muted);
+}
+
+@media (max-width: 720px) {
+  .tasks-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tasks-page__feature:nth-child(2),
+  .tasks-page__feature:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .tasks-page__cta {
+    padding: var(--space-2xl) var(--space-lg);
+  }
 }
 </style>

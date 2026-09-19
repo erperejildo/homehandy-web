@@ -54,9 +54,10 @@ const links = [
   font-size: var(--font-size-title);
   color: var(--color-ink);
   letter-spacing: var(--letter-spacing-tight);
+  flex-shrink: 0;
 
   &:hover {
-    color: var(--color-primary);
+    color: var(--color-ink-active);
   }
 }
 
@@ -66,7 +67,7 @@ const links = [
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-button-form);
+  border-radius: var(--radius-sm);
   object-fit: cover;
 }
 
@@ -75,11 +76,16 @@ const links = [
   align-items: center;
   gap: var(--space-xs);
   overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .site-header__link {
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-pill);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
   color: var(--color-ink-active);
   font-size: var(--font-size-body-small);
   font-weight: var(--font-weight-body-medium);
@@ -89,14 +95,13 @@ const links = [
     color var(--motion-quick) var(--motion-curve);
 
   &:hover {
-    background: var(--color-surface-tint);
+    background: var(--color-ink-ghost);
     color: var(--color-ink);
   }
 
   &.router-link-active {
-    background: var(--color-surface-tint);
-    color: var(--color-primary);
-    font-weight: var(--font-weight-body-bold);
+    background: var(--color-ink);
+    color: var(--color-on-dark);
   }
 }
 </style>
