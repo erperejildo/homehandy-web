@@ -141,7 +141,7 @@ const historyFeatures = [
           <p class="history-page__cta-text">
             The first entry writes itself the moment you log a job.
           </p>
-          <DownloadButtons dark />
+          <DownloadButtons />
         </div>
       </div>
     </section>

@@ -1,40 +1,50 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { STORE_URLS, detectPlatform } from '@/config'
+import appStoreBadge from '@/assets/store-app-store.avif'
+import googlePlayBadge from '@/assets/store-google-play.avif'
 
-const props = withDefaults(
-  defineProps<{
-    dark?: boolean
-  }>(),
-  { dark: false },
-)
+interface StoreBadge {
+  key: 'ios' | 'android'
+  label: string
+  url: string
+  image: { src: string; width: number; height: number }
+}
 
-const platform = computed(() => detectPlatform())
+const badges = computed<StoreBadge[]>(() => {
+  const appStore: StoreBadge = {
+    key: 'ios',
+    label: 'Download on the App Store',
+    url: STORE_URLS.ios,
+    image: { src: appStoreBadge, width: 256, height: 84 },
+  }
+  const googlePlay: StoreBadge = {
+    key: 'android',
+    label: 'Get it on Google Play',
+    url: STORE_URLS.android,
+    image: { src: googlePlayBadge, width: 256, height: 84 },
+  }
 
-const primary = computed(() =>
-  platform.value === 'ios'
-    ? { label: 'Download on the App Store', url: STORE_URLS.ios }
-    : { label: 'Get it on Google Play', url: STORE_URLS.android },
-)
-
-const secondary = computed(() =>
-  platform.value === 'ios'
-    ? { label: 'Google Play', url: STORE_URLS.android }
-    : { label: 'App Store', url: STORE_URLS.ios },
-)
+  return detectPlatform() === 'ios' ? [appStore, googlePlay] : [googlePlay, appStore]
+})
 </script>
 
 <template>
   <div class="download-buttons">
-    <a :href="primary.url" class="btn btn--primary btn--lg" rel="noopener">
-      {{ primary.label }}
-    </a>
     <a
-      :href="secondary.url"
-      :class="props.dark ? 'btn btn--dark-ghost' : 'btn btn--outline'"
+      v-for="badge in badges"
+      :key="badge.key"
+      :href="badge.url"
+      class="download-buttons__link"
       rel="noopener"
     >
-      {{ secondary.label }}
+      <img
+        class="download-buttons__badge"
+        :src="badge.image.src"
+        :alt="badge.label"
+        :width="badge.image.width"
+        :height="badge.image.height"
+      />
     </a>
   </div>
 </template>
@@ -45,5 +55,21 @@ const secondary = computed(() =>
   flex-wrap: wrap;
   gap: var(--space-md);
   align-items: center;
+}
+
+.download-buttons__link {
+  display: inline-flex;
+  border-radius: var(--radius-button);
+  transition: opacity var(--motion-quick) var(--motion-curve);
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.download-buttons__badge {
+  display: block;
+  width: auto;
+  height: 60px;
 }
 </style>
