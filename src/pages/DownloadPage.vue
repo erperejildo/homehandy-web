@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import DownloadButtons from '@/components/DownloadButtons.vue'
-import { STORE_URLS } from '@/config'
 </script>
 
 <template>
@@ -11,39 +10,21 @@ import { STORE_URLS } from '@/config'
         <h1 class="download-page__title">Get HomeHandy for free</h1>
         <p class="section-subtitle">
           The complete home maintenance tracker for iOS and Android. Available on both app stores
-          with zero ads, offline-first privacy, and no mandatory account creation.
+          with zero ads and offline-first privacy.
         </p>
 
         <div class="download-page__badges">
           <span class="chip">100% Free Forever</span>
-          <span class="chip chip--info">No Account Required</span>
           <span class="chip chip--warm">Offline-First Privacy</span>
           <span class="chip chip--sky">PDF Maintenance Reports</span>
         </div>
 
         <DownloadButtons />
 
-        <div class="download-page__stores">
-          <a :href="STORE_URLS.android" v-reveal class="card download-page__store" rel="noopener">
-            <span class="download-page__store-name">Google Play</span>
-            <span class="download-page__store-sub">Android, phones and tablets</span>
-          </a>
-          <a
-            :href="STORE_URLS.ios"
-            v-reveal="'right'"
-            class="card download-page__store"
-            rel="noopener"
-          >
-            <span class="download-page__store-name">App Store</span>
-            <span class="download-page__store-sub">iPhone and iPad</span>
-          </a>
-        </div>
-
         <p class="download-page__note">
-          HomeHandy is a companion to your home. Set up your first plan in minutes, no account
-          required to start.
+          HomeHandy is a companion to your home. Set up your first plan in minutes.
         </p>
-        <p class="download-page__reassurance">Free forever. No account required.</p>
+        <p class="download-page__reassurance">Free forever.</p>
       </div>
     </section>
   </div>
@@ -68,41 +49,6 @@ import { STORE_URLS } from '@/config'
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-xs);
-}
-
-.download-page__stores {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  justify-content: center;
-  margin-top: var(--space-xl);
-}
-
-.download-page__store {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-xs);
-  min-width: 240px;
-  text-align: left;
-  transition: background-color var(--motion-quick) var(--motion-curve);
-
-  &:hover {
-    background: var(--color-surface-tint);
-  }
-}
-
-.download-page__store-name {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-display);
-  font-size: var(--font-size-h3);
-  letter-spacing: var(--letter-spacing-heading);
-  color: var(--color-ink);
-}
-
-.download-page__store-sub {
-  color: var(--color-muted);
-  font-size: var(--font-size-body-small);
 }
 
 .download-page__note {

@@ -120,7 +120,7 @@ const packs = [
         <div v-reveal class="packs-page__cta card--dark">
           <h2 class="packs-page__cta-title">All packs included, fully editable</h2>
           <p class="packs-page__cta-text">Five packs, one tap to start, nothing locked down.</p>
-          <DownloadButtons dark />
+          <DownloadButtons />
         </div>
       </div>
     </section>

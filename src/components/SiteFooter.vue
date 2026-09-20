@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { APP_NAME, APP_DESCRIPTION, REPO_URL, STORE_URLS } from '@/config'
+import { APP_NAME, APP_DESCRIPTION, STORE_URLS } from '@/config'
 
 const year = new Date().getFullYear()
 
@@ -31,7 +31,7 @@ const links = [
 
     <div class="container site-footer__legal">
       <p>© {{ year }} {{ APP_NAME }}. All rights reserved.</p>
-      <a :href="REPO_URL" rel="noopener">Source code</a>
+      <a href="https://axislabs.eu" rel="noopener">Created by Axis Labs</a>
     </div>
   </footer>
 </template>

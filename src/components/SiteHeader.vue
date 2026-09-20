@@ -104,4 +104,23 @@ const links = [
     color: var(--color-on-dark);
   }
 }
+
+@media (max-width: 720px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding-block: var(--space-sm);
+  }
+
+  .site-header__nav {
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .site-header__link {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-caption);
+  }
+}
 </style>

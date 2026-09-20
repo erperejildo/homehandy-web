@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import App from '@/App.vue'
+import { STORE_URLS } from '@/config'
 import router from '@/router'
 
 async function mountAt(path: string) {
@@ -59,11 +60,18 @@ describe('pages', () => {
     expect(wrapper.text()).toContain('Every 6 weeks')
   })
 
-  it('download page shows both stores', async () => {
+  it('download page shows both store badges', async () => {
     const wrapper = await mountAt('/download/')
     expect(wrapper.text()).toContain('Get HomeHandy for free')
-    expect(wrapper.text()).toContain('Google Play')
-    expect(wrapper.text()).toContain('App Store')
+    const labels = wrapper
+      .findAll('.download-buttons__badge')
+      .map((badge) => badge.attributes('alt'))
+      .join(' ')
+    expect(labels).toContain('Google Play')
+    expect(labels).toContain('App Store')
+    const hrefs = wrapper.findAll('.download-buttons__link').map((link) => link.attributes('href'))
+    expect(hrefs).toContain(STORE_URLS.android)
+    expect(hrefs).toContain(STORE_URLS.ios)
   })
 })
 

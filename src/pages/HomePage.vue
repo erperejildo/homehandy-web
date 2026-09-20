@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import DownloadButtons from '@/components/DownloadButtons.vue'
-import WordRotator from '@/components/WordRotator.vue'
 import { APP_TAGLINE } from '@/config'
 
 type FeatureKey = 'due' | 'log' | 'recurrence' | 'packs'
@@ -130,7 +129,7 @@ const comparisonRows = [
   },
   {
     feature: 'Data privacy & ads',
-    homehandy: '100% offline-first, no account required, zero ad spam',
+    homehandy: '100% offline-first, zero ad spam',
     traditional: 'Mandatory sign-ups and cloud tracking',
     marketplaces: 'Sells your contact details to local contractors as leads',
   },
@@ -163,7 +162,7 @@ const comparisonRows = [
             routine tasks never turn into emergency repairs.
           </p>
           <DownloadButtons />
-          <p class="hero__reassurance">Free forever. No account required.</p>
+          <p class="hero__reassurance">Free forever.</p>
         </div>
 
         <div v-reveal="'right'" class="hero__media">
@@ -362,17 +361,17 @@ const comparisonRows = [
               <thead>
                 <tr>
                   <th>Capability</th>
-                  <th class="is-highlighted">HomeHandy</th>
                   <th>Rigid Maintenance Apps</th>
                   <th>Contractor Marketplaces</th>
+                  <th class="is-highlighted">HomeHandy</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="row in comparisonRows" :key="row.feature">
                   <td class="comparison-feature">{{ row.feature }}</td>
-                  <td class="is-highlighted">{{ row.homehandy }}</td>
                   <td class="comparison-competitor">{{ row.traditional }}</td>
                   <td class="comparison-competitor">{{ row.marketplaces }}</td>
+                  <td class="is-highlighted">{{ row.homehandy }}</td>
                 </tr>
               </tbody>
             </table>
@@ -386,15 +385,12 @@ const comparisonRows = [
       <div class="container dark-section">
         <div v-reveal class="dark-section__copy">
           <span class="eyebrow eyebrow--dark">Why it works</span>
-          <h2 class="dark-section__title">
-            Reminders that keep up
-            <WordRotator :words="['with your schedule', 'with the seasons', 'with real life']" />.
-          </h2>
+          <h2 class="dark-section__title">Reminders that keep up with your schedule.</h2>
           <p class="dark-section__text">
             Home maintenance is not a spreadsheet. It is a rhythm. HomeHandy follows yours.
           </p>
-          <DownloadButtons dark />
-          <p class="dark-section__reassurance">Free forever. No account required.</p>
+          <DownloadButtons />
+          <p class="dark-section__reassurance">Free forever.</p>
         </div>
 
         <ul v-reveal="'right'" class="dark-section__list">
@@ -469,9 +465,12 @@ const comparisonRows = [
               @click="openFaqIndex = openFaqIndex === index ? null : index"
             >
               <span class="faq-question__text">{{ faq.question }}</span>
-              <span class="faq-question__toggle" aria-hidden="true">{{
-                openFaqIndex === index ? '−' : '+'
-              }}</span>
+              <span class="faq-question__toggle" aria-hidden="true">
+                <svg class="faq-question__toggle-icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3 8h10" />
+                  <path v-if="openFaqIndex !== index" d="M8 3v10" />
+                </svg>
+              </span>
             </button>
             <div v-show="openFaqIndex === index" class="faq-answer">
               <p>{{ faq.answer }}</p>
@@ -506,8 +505,8 @@ const comparisonRows = [
           <p class="cta__text">
             Download HomeHandy and your first reminder plan is ready in minutes.
           </p>
-          <DownloadButtons dark />
-          <p class="cta__reassurance">Free forever. No account required.</p>
+          <DownloadButtons />
+          <p class="cta__reassurance">Free forever.</p>
         </div>
       </div>
     </section>
@@ -623,7 +622,7 @@ const comparisonRows = [
   height: 22px;
   border-radius: var(--radius-pill);
   background: var(--color-primary);
-  color: var(--color-ink);
+  color: var(--color-on-dark);
   font-size: 12px;
   font-weight: var(--font-weight-body-bold);
   flex-shrink: 0;
@@ -649,8 +648,8 @@ const comparisonRows = [
   fill: none;
   stroke: var(--color-primary);
   stroke-width: 2;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
+  stroke-dasharray: 101;
+  stroke-dashoffset: 101;
   animation: draw 2.4s var(--motion-curve-out) 300ms forwards;
 }
 
@@ -807,7 +806,7 @@ const comparisonRows = [
   height: 56px;
   border-radius: var(--radius-pill);
   background: var(--color-primary);
-  color: var(--color-ink);
+  color: var(--color-on-dark);
   font-size: 24px;
   font-weight: var(--font-weight-body-bold);
 }
@@ -886,7 +885,7 @@ const comparisonRows = [
   height: 24px;
   border-radius: var(--radius-pill);
   background: var(--color-primary);
-  color: var(--color-ink);
+  color: var(--color-on-dark);
   font-size: 13px;
   font-weight: var(--font-weight-body-bold);
   flex-shrink: 0;
@@ -1210,9 +1209,17 @@ const comparisonRows = [
   border-radius: var(--radius-pill);
   background: var(--color-surface-tint);
   color: var(--color-primary);
-  font-weight: var(--font-weight-body-bold);
-  font-size: 18px;
   flex-shrink: 0;
+}
+
+.faq-question__toggle-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .faq-answer {

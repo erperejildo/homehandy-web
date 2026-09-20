@@ -172,7 +172,7 @@ const exampleTasks = [
         <div v-reveal class="tasks-page__cta card--dark">
           <h2 class="tasks-page__cta-title">Get reminded before it's a problem</h2>
           <p class="tasks-page__cta-text">Set it once and HomeHandy keeps the rhythm for you.</p>
-          <DownloadButtons dark />
+          <DownloadButtons />
         </div>
       </div>
     </section>
