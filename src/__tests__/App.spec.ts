@@ -27,6 +27,13 @@ describe('App shell', () => {
     const links = wrapper.findAll('.site-header__link').map((a) => a.attributes('href'))
     expect(links).toEqual(['/', '/tasks/', '/history/', '/packs/', '/download/'])
   })
+
+  it('footer links include legal pages', async () => {
+    const wrapper = await mountAt('/')
+    const footerLinks = wrapper.findAll('.site-footer a').map((a) => a.attributes('href'))
+    expect(footerLinks).toContain('/privacy/')
+    expect(footerLinks).toContain('/terms/')
+  })
 })
 
 describe('pages', () => {
@@ -73,6 +80,18 @@ describe('pages', () => {
     expect(hrefs).toContain(STORE_URLS.android)
     expect(hrefs).toContain(STORE_URLS.ios)
   })
+
+  it('privacy page shows privacy notice and contact info', async () => {
+    const wrapper = await mountAt('/privacy/')
+    expect(wrapper.text()).toContain('Privacy policy')
+    expect(wrapper.text()).toContain('drodriguez.apps@gmail.com')
+  })
+
+  it('terms page shows terms and conditions', async () => {
+    const wrapper = await mountAt('/terms/')
+    expect(wrapper.text()).toContain('Terms and conditions')
+    expect(wrapper.text()).toContain('drodriguez.apps@gmail.com')
+  })
 })
 
 describe('seo', () => {
@@ -83,5 +102,12 @@ describe('seo', () => {
     expect(meta?.getAttribute('content')).toContain('Editable home maintenance checklists')
     const canonical = document.querySelector('link[rel="canonical"]')
     expect(canonical?.getAttribute('href')).toBe('https://homehandy.store/packs/')
+  })
+
+  it('sets document title and canonical link for legal routes', async () => {
+    await mountAt('/privacy/')
+    expect(document.title).toBe('Privacy Policy — HomeHandy')
+    const canonical = document.querySelector('link[rel="canonical"]')
+    expect(canonical?.getAttribute('href')).toBe('https://homehandy.store/privacy/')
   })
 })

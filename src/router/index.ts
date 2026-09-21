@@ -6,6 +6,8 @@ import TasksPage from '@/pages/TasksPage.vue'
 import HistoryPage from '@/pages/HistoryPage.vue'
 import PacksPage from '@/pages/PacksPage.vue'
 import DownloadPage from '@/pages/DownloadPage.vue'
+import PrivacyPage from '@/pages/PrivacyPage.vue'
+import TermsPage from '@/pages/TermsPage.vue'
 
 // The site is served from the root of the custom domain. Keep the legacy
 // /homehandy-web/ subpath working too, in case the domain is ever removed.
@@ -59,6 +61,28 @@ const routes = [
       title: `Download ${APP_NAME}: Free Home Maintenance App`,
       description:
         'Download HomeHandy for iOS and Android. Free home maintenance tracker with smart reminders, customizable packs, and offline-first privacy.',
+    },
+  },
+  {
+    path: '/privacy/',
+    alias: ['/policy/', '/privacy-policy/'],
+    name: 'privacy',
+    component: PrivacyPage,
+    meta: {
+      title: `Privacy Policy — ${APP_NAME}`,
+      description:
+        'Privacy policy for HomeHandy. Learn how we handle your personal data with an offline-first architecture and zero sale of personal information.',
+    },
+  },
+  {
+    path: '/terms/',
+    alias: ['/terms-and-conditions/', '/terms-of-service/'],
+    name: 'terms',
+    component: TermsPage,
+    meta: {
+      title: `Terms and Conditions — ${APP_NAME}`,
+      description:
+        'Terms and conditions for using the HomeHandy app, website, and related home maintenance services operated by Axis Labs.',
     },
   },
   {
