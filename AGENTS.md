@@ -37,9 +37,11 @@ src/
     HistoryPage.vue          # /history/ — service history, photos, PDF report, vendors
     PacksPage.vue            # /packs/ — the 5 real starter packs from the app
     DownloadPage.vue         # /download/ — both store links
+    PrivacyPage.vue          # /privacy/ — privacy notice, offline-first data handling
+    TermsPage.vue            # /terms/ — terms and conditions of use
   __tests__/                 # vitest specs (config, App shell, pages, SEO meta)
 public/
-  robots.txt, sitemap.xml, manifest.webmanifest, favicon.ico
+  robots.txt, sitemap.xml, llms.txt, manifest.webmanifest, favicon.ico
 .github/workflows/deploy.yml # CI/CD: quality gates → build → GitHub Pages
 ```
 
@@ -54,10 +56,12 @@ Header links point to real routes (SEO over a one-pager):
 | `/history/` | HistoryPage | Durable service history + PDF report |
 | `/packs/` | PacksPage | The 5 starter packs with real task examples |
 | `/download/` | DownloadPage | Store links |
+| `/privacy/` | PrivacyPage | Privacy notice and offline-first data model |
+| `/terms/` | TermsPage | Terms and conditions of service |
 
 Each route sets `document.title` + meta description in `router/index.ts` `afterEach`.
 `dist/` gets a real `index.html` per route + `404.html` in CI (SPA fallback trick), so every
-URL is directly crawlable and linkable. `public/sitemap.xml` lists all 5 URLs.
+URL is directly crawlable and linkable. `public/sitemap.xml` lists all 7 URLs.
 
 ## Design system (theme.scss)
 

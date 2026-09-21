@@ -1,0 +1,26 @@
+# HomeHandy
+
+> HomeHandy is an offline-first home maintenance tracker and upkeep organizer for iOS and Android. It helps homeowners stay on top of recurring household chores, maintain a durable service log with photos and repair costs, use pre-built starter checklists, and export comprehensive PDF reports for home resale, insurance, or warranties.
+
+## Core Pages
+
+- [Home](https://homehandy.store/): Overview of HomeHandy, primary feature highlights, interactive upkeep preview, and mobile app download links.
+- [Tasks & Reminders](https://homehandy.store/tasks/): Details on flexible recurrence cadences (days, weeks, months, or seasonal windows like autumn/spring) matching real-world household upkeep.
+- [Service History](https://homehandy.store/history/): Durable maintenance log, photo documentation for receipts and repairs, cost tracking, and 1-tap PDF maintenance report export.
+- [Starter Packs](https://homehandy.store/packs/): Five pre-configured, fully editable checklists covering HVAC & Air, Kitchen & Appliances, Plumbing & Water, Safety & Electrical, and Exterior & Seasonal upkeep.
+- [Download](https://homehandy.store/download/): Direct download links for Apple App Store (iOS) and Google Play Store (Android).
+- [Privacy Policy](https://homehandy.store/privacy/): Information handling, offline-first data model, zero selling of user data or contractor lead generation.
+- [Terms and Conditions](https://homehandy.store/terms/): Terms of use for the HomeHandy app, website, and related services operated by Axis Labs.
+
+## Mobile Applications
+
+- [iOS App on Apple App Store](https://apps.apple.com/us/app/homehandy-home-maintenance/id6763947552): Compatible with iPhone and iPad.
+- [Android App on Google Play Store](https://play.google.com/store/apps/details?id=com.drodriguez.homehandy): Compatible with Android devices.
+
+## Key Capabilities
+
+- **Realistic Recurrence**: Schedule tasks by arbitrary days (e.g. every 6 weeks for water softener salt) or seasonal windows (autumn gutter cleaning, winter freeze prevention).
+- **Fast Job Logging**: Complete maintenance tasks in seconds with one tap, including photo receipts, parts used, and contractor notes.
+- **Starter Packs**: Five pre-built packs with sensible default cadences that can be customized or deleted at will.
+- **Durable History & PDF Export**: Produces a clean, verifiable PDF service report that helps preserve home resale value and satisfies insurance or warranty requirements.
+- **Offline-First Privacy**: No mandatory sign-up, zero third-party trackers on the website, no ads, and no selling of user contact info to contractors.

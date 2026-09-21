@@ -9,6 +9,11 @@ const links = [
   { label: 'Starter Packs', to: '/packs/' },
   { label: 'Download', to: '/download/' },
 ]
+
+const legalLinks = [
+  { label: 'Privacy Policy', to: '/privacy/' },
+  { label: 'Terms and Conditions', to: '/terms/' },
+]
 </script>
 
 <template>
@@ -19,19 +24,37 @@ const links = [
         <p class="site-footer__description">{{ APP_DESCRIPTION }}</p>
       </div>
 
-      <nav class="site-footer__nav" aria-label="Footer navigation">
-        <p class="site-footer__heading">Pages</p>
-        <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="site-footer__link">
-          {{ link.label }}
-        </RouterLink>
-        <a :href="STORE_URLS.ios" class="site-footer__link" rel="noopener">App Store</a>
-        <a :href="STORE_URLS.android" class="site-footer__link" rel="noopener">Google Play</a>
-      </nav>
+      <div class="site-footer__columns">
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <p class="site-footer__heading">Pages</p>
+          <RouterLink v-for="link in links" :key="link.to" :to="link.to" class="site-footer__link">
+            {{ link.label }}
+          </RouterLink>
+          <a :href="STORE_URLS.ios" class="site-footer__link" rel="noopener">App Store</a>
+          <a :href="STORE_URLS.android" class="site-footer__link" rel="noopener">Google Play</a>
+        </nav>
+
+        <nav class="site-footer__nav" aria-label="Legal navigation">
+          <p class="site-footer__heading">Legal</p>
+          <RouterLink
+            v-for="link in legalLinks"
+            :key="link.to"
+            :to="link.to"
+            class="site-footer__link"
+          >
+            {{ link.label }}
+          </RouterLink>
+        </nav>
+      </div>
     </div>
 
     <div class="container site-footer__legal">
       <p>© {{ year }} {{ APP_NAME }}. All rights reserved.</p>
-      <a href="https://axislabs.eu" rel="noopener">Created by Axis Labs</a>
+      <div class="site-footer__legal-links">
+        <RouterLink to="/privacy/">Privacy Policy</RouterLink>
+        <RouterLink to="/terms/">Terms and Conditions</RouterLink>
+        <a href="https://axislabs.eu" rel="noopener">Created by Axis Labs</a>
+      </div>
     </div>
   </footer>
 </template>
@@ -72,11 +95,17 @@ const links = [
   max-width: 420px;
 }
 
+.site-footer__columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xl);
+}
+
 .site-footer__nav {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  min-width: 200px;
+  min-width: 140px;
 }
 
 .site-footer__heading {
@@ -104,6 +133,7 @@ const links = [
   flex-wrap: wrap;
   gap: var(--space-md);
   justify-content: space-between;
+  align-items: center;
   margin-top: var(--space-3xl);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--color-outline-dark);
@@ -117,5 +147,12 @@ const links = [
       color: var(--color-primary-light);
     }
   }
+}
+
+.site-footer__legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
 }
 </style>
