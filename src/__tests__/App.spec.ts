@@ -25,12 +25,13 @@ describe('App shell', () => {
   it('header links point to SEO pages', async () => {
     const wrapper = await mountAt('/')
     const links = wrapper.findAll('.site-header__link').map((a) => a.attributes('href'))
-    expect(links).toEqual(['/', '/tasks/', '/history/', '/packs/', '/download/'])
+    expect(links).toEqual(['/', '/tasks/', '/history/', '/packs/', '/blog/', '/download/'])
   })
 
-  it('footer links include legal pages without duplicates', async () => {
+  it('footer links include legal pages and blog without duplicates', async () => {
     const wrapper = await mountAt('/')
     const footerLinks = wrapper.findAll('.site-footer a').map((a) => a.attributes('href'))
+    expect(footerLinks).toContain('/blog/')
     expect(footerLinks).toContain('/privacy/')
     expect(footerLinks).toContain('/terms/')
     const footerText = wrapper.find('.site-footer').text()
@@ -97,6 +98,21 @@ describe('pages', () => {
     expect(wrapper.text()).toContain('Terms and conditions')
     expect(wrapper.text()).toContain('drodriguez.apps@gmail.com')
   })
+
+  it('blog index page lists articles', async () => {
+    const wrapper = await mountAt('/blog/')
+    expect(wrapper.text()).toContain('Home Maintenance Guides & Insights')
+    expect(wrapper.text()).toContain('Best Home Maintenance Apps of 2026')
+    expect(wrapper.text()).toContain('How to Create Flexible Home Maintenance Reminders')
+  })
+
+  it('blog post page renders article content and comparison table', async () => {
+    const wrapper = await mountAt('/blog/best-home-maintenance-apps-comparison/')
+    expect(wrapper.text()).toContain('Best Home Maintenance Apps of 2026')
+    expect(wrapper.text()).toContain('Top Home Maintenance Apps at a Glance')
+    expect(wrapper.text()).toContain('HomeZada')
+    expect(wrapper.text()).toContain('Centriq')
+  })
 })
 
 describe('seo', () => {
@@ -114,5 +130,14 @@ describe('seo', () => {
     expect(document.title).toBe('Privacy Policy — HomeHandy')
     const canonical = document.querySelector('link[rel="canonical"]')
     expect(canonical?.getAttribute('href')).toBe('https://homehandy.store/privacy/')
+  })
+
+  it('sets document title and canonical link for blog post', async () => {
+    await mountAt('/blog/best-home-maintenance-apps-comparison/')
+    expect(document.title).toContain('Best Home Maintenance Apps of 2026')
+    const canonical = document.querySelector('link[rel="canonical"]')
+    expect(canonical?.getAttribute('href')).toBe(
+      'https://homehandy.store/blog/best-home-maintenance-apps-comparison/',
+    )
   })
 })

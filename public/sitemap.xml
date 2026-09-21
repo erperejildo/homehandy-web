@@ -26,6 +26,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://homehandy.store/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homehandy.store/blog/best-home-maintenance-apps-comparison/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homehandy.store/blog/how-to-set-up-recurring-home-maintenance-reminders/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homehandy.store/blog/getting-started-home-maintenance-without-account/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://homehandy.store/blog/home-maintenance-log-service-history-pdf-export/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://homehandy.store/privacy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
