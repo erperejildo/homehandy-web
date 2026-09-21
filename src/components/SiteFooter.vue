@@ -13,7 +13,6 @@ const links = [
 const legalLinks = [
   { label: 'Privacy Policy', to: '/privacy/' },
   { label: 'Terms of Service', to: '/terms/' },
-  { label: 'Terms and Conditions', to: '/terms/' },
 ]
 </script>
 
@@ -53,8 +52,7 @@ const legalLinks = [
       <p>© {{ year }} {{ APP_NAME }}. All rights reserved.</p>
       <div class="site-footer__legal-links">
         <RouterLink to="/privacy/">Privacy Policy</RouterLink>
-        <RouterLink to="/terms/">Terms of Service</RouterLink>
-        <RouterLink to="/terms/">Terms and Conditions</RouterLink>
+        <RouterLink to="/terms/" title="Terms and Conditions">Terms of Service</RouterLink>
         <a href="https://axislabs.eu" rel="noopener">Created by Axis Labs</a>
       </div>
     </div>

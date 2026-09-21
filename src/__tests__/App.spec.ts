@@ -28,7 +28,7 @@ describe('App shell', () => {
     expect(links).toEqual(['/', '/tasks/', '/history/', '/packs/', '/download/'])
   })
 
-  it('footer links include legal pages', async () => {
+  it('footer links include legal pages without duplicates', async () => {
     const wrapper = await mountAt('/')
     const footerLinks = wrapper.findAll('.site-footer a').map((a) => a.attributes('href'))
     expect(footerLinks).toContain('/privacy/')
@@ -36,7 +36,8 @@ describe('App shell', () => {
     const footerText = wrapper.find('.site-footer').text()
     expect(footerText).toContain('Privacy Policy')
     expect(footerText).toContain('Terms of Service')
-    expect(footerText).toContain('Terms and Conditions')
+    const bottomTermsLinks = wrapper.findAll('.site-footer__legal-links a[href="/terms/"]')
+    expect(bottomTermsLinks.length).toBe(1)
   })
 })
 
