@@ -8,6 +8,9 @@ import PacksPage from '@/pages/PacksPage.vue'
 import DownloadPage from '@/pages/DownloadPage.vue'
 import PrivacyPage from '@/pages/PrivacyPage.vue'
 import TermsPage from '@/pages/TermsPage.vue'
+import BlogIndexPage from '@/pages/BlogIndexPage.vue'
+import BlogPostPage from '@/pages/BlogPostPage.vue'
+import { getPostBySlug } from '@/data/blogPosts'
 
 // The site is served from the root of the custom domain. Keep the legacy
 // /homehandy-web/ subpath working too, in case the domain is ever removed.
@@ -86,6 +89,26 @@ const routes = [
     },
   },
   {
+    path: '/blog/',
+    name: 'blog',
+    component: BlogIndexPage,
+    meta: {
+      title: `Home Maintenance Blog & Guides — ${APP_NAME}`,
+      description:
+        'Home maintenance guides, app comparisons, and preventive upkeep tips from HomeHandy. Learn how to care for your home and avoid costly repairs.',
+    },
+  },
+  {
+    path: '/blog/:slug/',
+    alias: ['/blog/:slug'],
+    name: 'blog-post',
+    component: BlogPostPage,
+    meta: {
+      title: `${APP_NAME} Blog`,
+      description: APP_DESCRIPTION,
+    },
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/',
   },
@@ -120,8 +143,17 @@ function setCanonicalTag(url: string) {
 }
 
 router.afterEach((to) => {
-  const title = (to.meta.title as string | undefined) ?? APP_NAME
-  const description = (to.meta.description as string | undefined) ?? APP_DESCRIPTION
+  let title = (to.meta.title as string | undefined) ?? APP_NAME
+  let description = (to.meta.description as string | undefined) ?? APP_DESCRIPTION
+
+  if (to.name === 'blog-post' && to.params.slug) {
+    const post = getPostBySlug(String(to.params.slug))
+    if (post) {
+      title = `${post.metaTitle} — ${APP_NAME}`
+      description = post.description
+    }
+  }
+
   document.title = title
 
   setMetaTag('meta[name="description"]', 'name', 'description', description)

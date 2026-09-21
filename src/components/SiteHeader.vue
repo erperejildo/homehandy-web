@@ -7,6 +7,7 @@ const links = [
   { label: 'Tasks & Reminders', to: '/tasks/' },
   { label: 'Service History', to: '/history/' },
   { label: 'Starter Packs', to: '/packs/' },
+  { label: 'Blog', to: '/blog/' },
   { label: 'Download', to: '/download/' },
 ]
 </script>

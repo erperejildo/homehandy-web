@@ -24,3 +24,12 @@
 - **Starter Packs**: Five pre-built packs with sensible default cadences that can be customized or deleted at will.
 - **Durable History & PDF Export**: Produces a clean, verifiable PDF service report that helps preserve home resale value and satisfies insurance or warranty requirements.
 - **Offline-First Privacy**: No mandatory sign-up, zero third-party trackers on the website, no ads, and no selling of user contact info to contractors.
+
+## Blog & Guides
+
+- [Home Maintenance Blog](https://homehandy.store/blog/): Expert homeowner advice, app comparisons, preventive maintenance schedules, and upkeep guides.
+- [Best Home Maintenance Apps Comparison (2026)](https://homehandy.store/blog/best-home-maintenance-apps-comparison/): In-depth comparison of HomeHandy vs HomeZada, Centriq, Dib, and Angi, covering privacy, pricing, offline access, and scheduling flexibility.
+- [How to Set Up Recurring Home Maintenance Reminders](https://homehandy.store/blog/how-to-set-up-recurring-home-maintenance-reminders/): Practical guide to scheduling seasonal chores, HVAC filter cadences, and plumbing flushes that prevent costly repairs.
+- [Getting Started with Home Maintenance Without an Account](https://homehandy.store/blog/getting-started-home-maintenance-without-account/): How HomeHandy enables zero-friction, private home upkeep with instant local setup and no login walls.
+- [Home Maintenance Log & PDF Export Guide](https://homehandy.store/blog/home-maintenance-log-service-history-pdf-export/): How logging service history with photos and exporting proof reports preserves home resale value and backs warranty claims.
+

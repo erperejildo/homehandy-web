@@ -36,9 +36,13 @@ src/
     TasksPage.vue            # /tasks/ — recurrence (intervals, seasonal, real-world) + example plan
     HistoryPage.vue          # /history/ — service history, photos, PDF report, vendors
     PacksPage.vue            # /packs/ — the 5 real starter packs from the app
+    BlogIndexPage.vue        # /blog/ — content hub, searchable/filterable guides & comparisons
+    BlogPostPage.vue         # /blog/:slug/ — rich SEO article, breadcrumbs, JSON-LD, CTAs
     DownloadPage.vue         # /download/ — both store links
     PrivacyPage.vue          # /privacy/ — privacy notice, offline-first data handling
     TermsPage.vue            # /terms/ — terms and conditions of use
+  data/
+    blogPosts.ts             # blog article content, competitor comparisons, and guide metadata
   __tests__/                 # vitest specs (config, App shell, pages, SEO meta)
 public/
   robots.txt, sitemap.xml, llms.txt, manifest.webmanifest, favicon.ico
@@ -55,13 +59,15 @@ Header links point to real routes (SEO over a one-pager):
 | `/tasks/` | TasksPage | Recurrence model details + example task table |
 | `/history/` | HistoryPage | Durable service history + PDF report |
 | `/packs/` | PacksPage | The 5 starter packs with real task examples |
+| `/blog/` | BlogIndexPage | Homeowner guides, competitor comparisons, upkeep tips |
+| `/blog/:slug/` | BlogPostPage | Full blog articles with structured schema and app CTAs |
 | `/download/` | DownloadPage | Store links |
 | `/privacy/` | PrivacyPage | Privacy notice and offline-first data model |
 | `/terms/` | TermsPage | Terms and conditions of service |
 
 Each route sets `document.title` + meta description in `router/index.ts` `afterEach`.
 `dist/` gets a real `index.html` per route + `404.html` in CI (SPA fallback trick), so every
-URL is directly crawlable and linkable. `public/sitemap.xml` lists all 7 URLs.
+URL is directly crawlable and linkable. `public/sitemap.xml` lists all routes and blog posts.
 
 ## Design system (theme.scss)
 
