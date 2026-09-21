@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#7CB342" />
     <link rel="canonical" href="https://homehandy.store/" />
+    <link rel="privacy-policy" href="https://homehandy.store/privacy/" />
+    <link rel="terms-of-service" href="https://homehandy.store/terms/" />
     <title>HomeHandy: Home Maintenance Tracker &amp; Upkeep Log</title>
     <meta
       name="description"
@@ -78,7 +80,9 @@
             "Pre-built starter packs for HVAC, kitchen, plumbing, safety, and exterior",
             "Durable service history with PDF export for insurance and home sale",
             "100% offline-first privacy with no mandatory sign-up"
-          ]
+          ],
+          "privacyPolicy": "https://homehandy.store/privacy/",
+          "termsOfService": "https://homehandy.store/terms/"
         },
         {
           "@type": "WebSite",
@@ -86,7 +90,9 @@
           "url": "https://homehandy.store/",
           "name": "HomeHandy",
           "description": "Official website of HomeHandy, the friendly home maintenance tracker.",
-          "inLanguage": "en"
+          "inLanguage": "en",
+          "privacyPolicy": "https://homehandy.store/privacy/",
+          "termsOfService": "https://homehandy.store/terms/"
         },
         {
           "@type": "FAQPage",
@@ -139,7 +145,84 @@
     </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Static crawlable fallback for search engines and SEO compliance bots -->
+      <header class="site-header">
+        <div class="container site-header__inner">
+          <a class="site-header__brand" href="/">
+            <span class="site-header__name">HomeHandy</span>
+          </a>
+          <nav class="site-header__nav" aria-label="Main navigation">
+            <a class="site-header__link" href="/">Home</a>
+            <a class="site-header__link" href="/tasks/">Tasks &amp; Reminders</a>
+            <a class="site-header__link" href="/history/">Service History</a>
+            <a class="site-header__link" href="/packs/">Starter Packs</a>
+            <a class="site-header__link" href="/download/">Download</a>
+          </nav>
+        </div>
+      </header>
+      <main class="app-main">
+        <section class="section">
+          <div class="container">
+            <h1>Home maintenance, without the worry</h1>
+            <p>
+              Free home maintenance tracker for iOS and Android. Keep routine upkeep on your radar so
+              tasks never turn into emergency repairs.
+            </p>
+            <p>
+              <a href="/privacy/">Privacy Policy</a> &bull;
+              <a href="/terms/">Terms of Service</a> &bull;
+              <a href="/terms/">Terms and Conditions</a>
+            </p>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="container site-footer__inner">
+          <div class="site-footer__brand">
+            <p class="site-footer__name">HomeHandy</p>
+            <p class="site-footer__description">
+              Free home maintenance tracker. Get recurring upkeep reminders, log repairs in seconds,
+              and track a durable service history for your property.
+            </p>
+          </div>
+          <div class="site-footer__columns">
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+              <p class="site-footer__heading">Pages</p>
+              <a class="site-footer__link" href="/tasks/">Tasks &amp; Reminders</a>
+              <a class="site-footer__link" href="/history/">Service History</a>
+              <a class="site-footer__link" href="/packs/">Starter Packs</a>
+              <a class="site-footer__link" href="/download/">Download</a>
+            </nav>
+            <nav class="site-footer__nav" aria-label="Legal navigation">
+              <p class="site-footer__heading">Legal</p>
+              <a class="site-footer__link" href="/privacy/">Privacy Policy</a>
+              <a class="site-footer__link" href="/terms/">Terms of Service</a>
+              <a class="site-footer__link" href="/terms/">Terms and Conditions</a>
+              <a class="site-footer__link" href="/terms/">Terms</a>
+            </nav>
+          </div>
+        </div>
+        <div class="container site-footer__legal">
+          <p>© 2026 HomeHandy. All rights reserved.</p>
+          <div class="site-footer__legal-links">
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/terms/">Terms and Conditions</a>
+            <a href="/terms/">Terms</a>
+            <a href="https://axislabs.eu">Created by Axis Labs</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <noscript>
+      <nav aria-label="Legal navigation fallback">
+        <a href="https://homehandy.store/privacy/">Privacy Policy</a>
+        <a href="https://homehandy.store/terms/">Terms of Service</a>
+        <a href="https://homehandy.store/terms/">Terms and Conditions</a>
+        <a href="https://homehandy.store/terms/">Terms</a>
+      </nav>
+    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
