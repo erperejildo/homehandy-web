@@ -162,7 +162,11 @@ const comparisonRows = [
             routine tasks never turn into emergency repairs.
           </p>
           <DownloadButtons />
-          <p class="hero__reassurance">Free forever.</p>
+          <p class="hero__reassurance">
+            Free forever &bull;
+            <RouterLink to="/privacy/">Privacy Policy</RouterLink> &bull;
+            <RouterLink to="/terms/">Terms of Service</RouterLink>
+          </p>
         </div>
 
         <div v-reveal="'right'" class="hero__media">
@@ -241,9 +245,9 @@ const comparisonRows = [
               your privacy and keeps your service history completely under your control.
             </p>
             <div class="definition-points">
-              <span class="chip">Offline-first privacy</span>
-              <span class="chip chip--info">Flexible recurrence</span>
-              <span class="chip chip--warm">Permanent service log</span>
+              <RouterLink to="/privacy/" class="chip">Offline-first privacy</RouterLink>
+              <RouterLink to="/tasks/" class="chip chip--info">Flexible recurrence</RouterLink>
+              <RouterLink to="/history/" class="chip chip--warm">Permanent service log</RouterLink>
             </div>
           </div>
 
@@ -547,6 +551,15 @@ const comparisonRows = [
 .hero__reassurance {
   color: var(--color-muted);
   font-size: var(--font-size-caption);
+
+  a {
+    color: var(--color-muted);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-ink);
+    }
+  }
 }
 
 .hero__media {

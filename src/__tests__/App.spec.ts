@@ -33,6 +33,10 @@ describe('App shell', () => {
     const footerLinks = wrapper.findAll('.site-footer a').map((a) => a.attributes('href'))
     expect(footerLinks).toContain('/privacy/')
     expect(footerLinks).toContain('/terms/')
+    const footerText = wrapper.find('.site-footer').text()
+    expect(footerText).toContain('Privacy Policy')
+    expect(footerText).toContain('Terms of Service')
+    expect(footerText).toContain('Terms and Conditions')
   })
 })
 
