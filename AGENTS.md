@@ -45,7 +45,7 @@ src/
     blogPosts.ts             # blog article content, competitor comparisons, and guide metadata
   __tests__/                 # vitest specs (config, App shell, pages, SEO meta)
 public/
-  robots.txt, sitemap.xml, llms.txt, manifest.webmanifest, favicon.ico
+  app-ads.txt, robots.txt, sitemap.xml, llms.txt, manifest.webmanifest, favicon.ico
 .github/workflows/deploy.yml # CI/CD: quality gates → build → GitHub Pages
 ```
 
